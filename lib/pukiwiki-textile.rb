@@ -67,7 +67,9 @@ module PukiwikiTextile
             end
           end
         end
+        tt += "\n"
         tt +=PukiwikiTextile.inlines(table.map{|e|"|#{e.delete_if{|f|f=='~'}.join('|')}|"}.join("\n")) +"\n"
+        tt += "\n"
         str = a
       else
         str.gsub!(/^~(.*)$/,"\\1")
