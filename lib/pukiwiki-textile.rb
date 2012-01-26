@@ -4,9 +4,9 @@ require 'uri'
 module PukiwikiTextile
   def PukiwikiTextile.inlines str
     str.gsub!(/\[\[(.*)(?::|>)((?:https?|ftp|mailto):.*)\]\]/){|s|" \"#{$1}\":#{$2} "}
-    str.gsub!(/\'\'\'(.*?)\'\'\'/){" _#{$1}_ "}
-    str.gsub!(/\'\'(.*?)\'\'/){" *#{$1}* "}
-    str.gsub!(/%%(.*?)%%/){" -#{$1}- "}
+    str.gsub!(/(^.*)\'\'\'(.*?)\'\'\'/){"#{$1.length>0?"#{$1} ":""}_#{$2}_ "}
+    str.gsub!(/(^.*)\'\'(.*?)\'\'/)    {"#{$1.length>0?"#{$1} ":""}*#{$2}* "}
+    str.gsub!(/(^.*)%%(.*?)%%/)        {"#{$1.length>0?"#{$1} ":""}-#{$2}- "}
     return str
   end
 
