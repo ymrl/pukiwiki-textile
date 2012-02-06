@@ -34,7 +34,7 @@ module PukiwikiTextile
         while a = arr.shift
           if a =~ /^\|/
             a.gsub!(/^\|(.*)\|h$/){|s| s.gsub(/\|([^|]*)/,'|_. \1').gsub(/_\. h$/,"")}
-            table.push(str.split(/(\|)/).delete_if{|e|e=='|'}[1..-1])
+            table.push(a.split(/(\|)/).delete_if{|e|e=='|'}[1..-1])
             next
           else
             break
