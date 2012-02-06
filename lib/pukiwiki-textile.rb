@@ -30,13 +30,11 @@ module PukiwikiTextile
       elsif str =~ /^\|/
         table = []
         str.gsub!(/^\|(.*)\|h$/){|s| s.gsub(/\|([^|]*)/,'|_. \1').gsub(/_\. h$/,"")}
-        table.push(str.split('|')[1..-1])
-        #str += "\n"
+        table.push(str.split(/(\|)/).delete_if{|e|e=='|'}[1..-1])
         while a = arr.shift
           if a =~ /^\|/
             a.gsub!(/^\|(.*)\|h$/){|s| s.gsub(/\|([^|]*)/,'|_. \1').gsub(/_\. h$/,"")}
-            table.push(a.split('|')[1..-1])
-            #str += a + "\n";
+            table.push(str.split(/(\|)/).delete_if{|e|e=='|'}[1..-1])
             next
           else
             break
