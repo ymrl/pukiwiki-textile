@@ -16,8 +16,9 @@ module PukiwikiTextile
     str = arr.shift
 
     while str
-      if str =~ /^\s+.+$/
-        str.gsub(/^\s/,'')
+      if str =~ /^\s.+$/
+        str.gsub!(/^\s/,'')
+        str += "\n"
         while a = arr.shift 
           if a =~ /^\s/
             str += a.gsub(/^\s/,'') + "\n"; next
@@ -25,7 +26,7 @@ module PukiwikiTextile
             break
           end
         end
-        tt += "<pre>\n#{str}\n</pre>\n\n"
+        tt += "\n<pre>\n#{str}</pre>\n\n"
         str = a
       elsif str =~ /^\|/
         table = []
